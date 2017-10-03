@@ -1,16 +1,14 @@
 int delaylength = 30;
-
 void setup() {
-  //establish motor direction toggle pins
+//establish motor direction toggle pins
   pinMode(12, OUTPUT); //CH A -- HIGH = forwards and LOW = backwards???
   pinMode(13, OUTPUT); //CH B -- HIGH = forwards and LOW = backwards???
   
-  //establish motor brake pins
+//establish motor brake pins
   pinMode(9, OUTPUT); //brake (disable) CH A
   pinMode(8, OUTPUT); //brake (disable) CH B  
   Serial.begin(9600);
 }
-
 void loop(){ 
   Serial.println("How many steps would you like the motor to move by?");
   while(Serial.available()==0){}
@@ -26,43 +24,34 @@ void loop(){
       Serial.print(loopscalc);
       Serial.println(" loops of the program");
         for(float loops=0; loops>=loopscalc; loops--){
-          //NEGATIVE ROTATION
-          Serial.print("Loop ");
-          Serial.println(loops);
-          //Step 1
+//NEGATIVE ROTATION
+          Serial.println("Looping");
+//Step 1
           digitalWrite(9, LOW);  //ENABLE CH A
           digitalWrite(8, HIGH); //DISABLE CH B
-
           digitalWrite(12, HIGH);   //Sets direction of CH A
           analogWrite(3, 255);   //Moves CH A
-  
           delay(delaylength);
-  //Step 2
+//Step 2
           digitalWrite(9, HIGH);  //DISABLE CH A
           digitalWrite(8, LOW); //ENABLE CH B
-
           digitalWrite(13, HIGH);   //Sets direction of CH B
           analogWrite(11, 255);   //Moves CH B
-  
           delay(delaylength);
-  //Step 3
+//Step 3
           digitalWrite(9, LOW);  //ENABLE CH A
           digitalWrite(8, HIGH); //DISABLE CH B
-
           digitalWrite(12, LOW);   //Sets direction of CH A
           analogWrite(3, 255);   //Moves CH A
-  
           delay(delaylength);
-    //Step 4
+//Step 4
           digitalWrite(9, HIGH);  //DISABLE CH A
           digitalWrite(8, LOW); //ENABLE CH B
-
           digitalWrite(13, LOW);   //Sets direction of CH B
           analogWrite(11, 255);   //Moves CH B
-  
           delay(delaylength);
         }
-    //To stop rotation
+//To stop rotation
   digitalWrite(9, HIGH); //DISABLES CHANNEL A 
   digitalWrite(8, HIGH); //DISABLES CHANNEL B
     }
@@ -74,43 +63,34 @@ void loop(){
       Serial.print(loopscalc);
       Serial.println(" loops of the program");
         for(float loops=0; loops<=loopscalc; loops++){
-          Serial.print("Loop ");
-          Serial.println(loops);
-          //POSITIVE ROTATION
-          //Step 1
+          Serial.println("Looping");
+//POSITIVE ROTATION
+//Step 1
           digitalWrite(9, LOW);  //ENABLE CH A
           digitalWrite(8, HIGH); //DISABLE CH B
-
           digitalWrite(12, HIGH);   //Sets direction of CH A
           analogWrite(3, 255);   //Moves CH A
-  
           delay(delaylength);
-  //Step 2
+//Step 2
           digitalWrite(9, HIGH);  //DISABLE CH A
           digitalWrite(8, LOW); //ENABLE CH B
-
           digitalWrite(13, LOW);   //Sets direction of CH B
           analogWrite(11, 255);   //Moves CH B
-  
           delay(delaylength);
-  //Step 3
+//Step 3
           digitalWrite(9, LOW);  //ENABLE CH A
           digitalWrite(8, HIGH); //DISABLE CH B
-
           digitalWrite(12, LOW);   //Sets direction of CH A
           analogWrite(3, 255);   //Moves CH A
-  
           delay(delaylength);
-    //Step 4
+//Step 4
           digitalWrite(9, HIGH);  //DISABLE CH A
           digitalWrite(8, LOW); //ENABLE CH B
-
           digitalWrite(13, HIGH);   //Sets direction of CH B
           analogWrite(11, 255);   //Moves CH B
-  
           delay(delaylength);
         }
-    //To stop rotation
+//To stop rotation
   digitalWrite(9, HIGH); //DISABLES CHANNEL A 
   digitalWrite(8, HIGH); //DISABLES CHANNEL B
 }
